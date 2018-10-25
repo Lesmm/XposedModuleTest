@@ -10,6 +10,14 @@ import java.util.Map;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
@@ -72,35 +80,38 @@ public class Tutorial implements IXposedHookLoadPackage {
 							String content = contentValues.getAsString("content");
 							Long createTime = contentValues.getAsLong("createTime");
 
-							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm"); 
-							String date_string = sdf.format(new Date(createTime)); 
-							
+							SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+							String date_string = sdf.format(new Date(createTime));
+
 							String message = talker + "\r\n" + date_string + " : " + content;
 							Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
 
-//							FrameLayout view = (FrameLayout) mContext.getWindow().getDecorView();
-//							FrameLayout frame = new FrameLayout(mContext);
-//							FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//							params.gravity = Gravity.CENTER;
-//							frame.setLayoutParams(params);
-//							Button b = new Button(mContext);
-//							FrameLayout.LayoutParams b_p = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
-//							b_p.gravity = Gravity.CENTER_HORIZONTAL;
-//							b.setLayoutParams(b_p);
-//							b.setText("北京");
-//							frame.addView(b, b_p);
-//							view.addView(frame, params);
-							
-							// TextView textView = new TextView(mContext);//新建控件
-							// textView.setGravity(Gravity.CENTER);//居中
-							// LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-							// ViewGroup.LayoutParams.WRAP_CONTENT);
-							// //设置控件的宽高
-							// layoutParams.setMargins(5, 5, 5, 5);//设置控件与上下左右的距离
-							// textView.setGravity(Gravity.LEFT);
-							// textView.setBackgroundResource(android.R.color.white);//设置背景色
-							// textView.setLayoutParams(layoutParams);//上面设置控件的高宽后就落实
-							// textView.append(message + "\r\n");//控件内容
+							// FrameLayout view = (FrameLayout) mContext.getWindow().getDecorView();
+							// FrameLayout frame = new FrameLayout(mContext);
+							// FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
+							// params.gravity = Gravity.CENTER;
+							// frame.setLayoutParams(params);
+							// Button button = new Button(mContext);
+							// FrameLayout.LayoutParams buttonLParams = new FrameLayout.LayoutParams(LayoutParams.MATCH_PARENT,
+							// LayoutParams.WRAP_CONTENT);
+							// buttonLParams.gravity = Gravity.CENTER_HORIZONTAL;
+							// button.setLayoutParams(buttonLParams);
+							// button.setText("北京");
+							// frame.addView(button, buttonLParams);
+							// view.addView(frame, params);
+
+							// 通过WindowManager
+//							TextView floatTextView = new TextView(mContext);// 新建控件
+//							floatTextView.setGravity(Gravity.CENTER);// 居中
+//							LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//							layoutParams.setMargins(5, 5, 5, 5);// 设置控件与上下左右的距离
+//							floatTextView.setGravity(Gravity.LEFT);
+//							floatTextView.setBackgroundResource(android.R.color.white);// 设置背景色
+//							floatTextView.setLayoutParams(layoutParams);// 上面设置控件的高宽后就落实
+//							floatTextView.append(message + "\r\n");// 控件内容
+//
+//							WindowManager windowManager = mContext.getWindowManager();
+//							windowManager.addView(floatTextView, layoutParams);
 
 						}
 					}
